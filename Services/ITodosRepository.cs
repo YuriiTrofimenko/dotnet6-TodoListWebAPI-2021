@@ -3,7 +3,7 @@ using TodoListWebAPI.Models;
 
 namespace TodoListWebAPI.Services
 {
-    public class IWFRepository
+    public interface ITodosRepository
     {
         IQueryable<ToDoItem> Items { get; }
     }
