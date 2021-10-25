@@ -5,6 +5,6 @@ namespace TodoListWebAPI.Services
 {
     public class IWFRepository
     {
-        public IQueryable<ToDoItem> Items { get; }
+        IQueryable<ToDoItem> Items { get; }
     }
 }
