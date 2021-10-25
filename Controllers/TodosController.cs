@@ -26,5 +26,16 @@ namespace TodoListWebAPI.Controllers
         {
             return new {data = _todosRepository.Items, message = "Get Todo Items is Completed"};
         }
+        
+        // PUT
+        [HttpPut("{id}")]
+        public object Put(long id, ToDoItem newItem)
+        {
+            if (_todosRepository.update(id, newItem))
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

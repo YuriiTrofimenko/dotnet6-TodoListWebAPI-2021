@@ -7,13 +7,27 @@ namespace TodoListWebAPI.Services
 {
     public class TodosInMemoryRepository : ITodosRepository
     {
-        public IQueryable<ToDoItem> Items =>
-            new List<ToDoItem>
+        private static readonly List<ToDoItem> ITEMS =
+            new()
             {
                 new("t1", "d1", new DateTime()),
                 new("t2", "d2", new DateTime()),
                 new("t3", "d3", new DateTime())
-            }.AsQueryable();
-        
+            };
+        public IQueryable<ToDoItem> Items => ITEMS.AsQueryable();
+
+        public bool update(long id, ToDoItem newItem)
+        {
+            var item = ITEMS.SingleOrDefault(oldItem => oldItem.Id == id);
+            Console.WriteLine(id);
+            ITEMS.ForEach(Console.WriteLine);
+            if (item != null)
+            {
+                item.Title = newItem.Title;
+                item.Done = newItem.Done;
+                return true;
+            }
+            return false;
+        }
     }
 }
